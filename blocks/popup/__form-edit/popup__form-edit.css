@@ -1,0 +1,11 @@
+.popup__form-edit {
+  margin-top: 54px;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .popup__form-edit {
+    margin-top: 80px;
+  }
+}

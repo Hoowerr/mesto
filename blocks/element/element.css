@@ -1,0 +1,34 @@
+.element {
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  min-height: 363px;
+  background-color: white;
+  padding: 0;
+  border-radius: 10px;
+}
+@media screen and (max-width: 1279px) {
+  .element {
+    max-width: 302px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .element:nth-child(odd) {
+    justify-self: end;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .element {
+    max-width: 273px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .element {
+    min-height: 361px;
+    max-width: 282px;
+    justify-self: center;
+  }
+}
