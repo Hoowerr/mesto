@@ -1,6 +1,6 @@
 .element__like-button_active {
   background-image: none;
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 .element__like-button_active::after {
