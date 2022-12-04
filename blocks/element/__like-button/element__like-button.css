@@ -5,6 +5,7 @@
   height: 19px;
   margin: 0;
   border: none;
+  padding: 0;
   align-self: center;
   background-image: url(../../../images/like.svg);
   background-repeat: no-repeat;
@@ -18,11 +19,9 @@
 
 .element__like-button::after {
   content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  display: block;
+  width: 22px;
+  height: 19px;
   opacity: 0;
   background-image: url(../../../images/like_active.svg);
 }
