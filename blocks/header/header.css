@@ -1,17 +1,14 @@
 .header {
-  margin: 0 auto;
   margin-top: 45px;
   border-bottom: 1px solid #545454;
   padding-bottom: 37px;
+  grid-column: 2 / 3;
 }
 
 @media screen and (max-width: 767px) {
   .header {
-    position: absolute;
-    top: 28px;
-    left: 0;
-    right: 0;
+    margin-top: 28px;
     padding-bottom: 30px;
-    margin-top: 0;
+    grid-column: 1 / span 3;
   }
 }
