@@ -4,8 +4,10 @@
   align-items: center;
   justify-content: space-between;
   margin-right: 20px;
-  margin-left: 21px;
+  margin-left: 19px;
   gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 26px;
 }
 @media screen and (max-width: 767px) {
   .element__container {

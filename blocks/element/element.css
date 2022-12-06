@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 280px;
-  height: 361px;
+
   background-color: white;
   padding: 0;
   border-radius: 10px;
@@ -27,7 +27,6 @@
 
 @media screen and (max-width: 767px) {
   .element {
-    min-height: 361px;
     width: 282px;
     justify-self: center;
   }

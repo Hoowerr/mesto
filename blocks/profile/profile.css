@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 40px;
-  min-height: 120px;
   grid-column: 2 / 3;
   overflow: hidden;
 }

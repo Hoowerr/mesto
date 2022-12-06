@@ -1,6 +1,5 @@
 .element__like-button {
-  position: relative;
-  background-color: white;
+  background-color: transparent;
   width: 22px;
   height: 19px;
   margin: 0;
@@ -11,17 +10,7 @@
   background-repeat: no-repeat;
   cursor: pointer;
   transition: opacity 0.3s linear;
-  opacity: 1;
 }
 .element__like-button:hover {
   opacity: 0.5;
-}
-
-.element__like-button::after {
-  content: "";
-  display: block;
-  width: 22px;
-  height: 19px;
-  opacity: 0;
-  background-image: url(../../../images/like_active.svg);
 }
