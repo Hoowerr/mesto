@@ -28,7 +28,7 @@
       </section>
 
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
           <img
             class="element__image"
             src="./images/karachaevsk.jpg"
@@ -91,14 +91,14 @@
             <h2 class="element__title">Карачаевск</h2>
             <button type="button" class="element__like-button"></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <section class="popup popup_prof">
       <div class="popup__container">
         <button type="button" class="popup__closed"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
@@ -121,6 +121,30 @@
           </fieldset>
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
+      </div>
+    </section>
+    
+    <section class="popup popup_add">
+      <div class="popup__container">
+        <button type="button" class="popup__add-closed"></button>
+        <h2 class="popup__add-header">Новое место</h2>
+        <form class="popup__add-form" name="profileAddForm">
+        <input
+          class="popup__form-input popup__add-input"
+          type="text"
+          placeholder="Название"
+          id="AddNameInputId"
+          name="popapAddInput"
+         />
+        <input
+          class="popup__form-input popup__add-input"
+          type="url"
+          placeholder="Ссылка на картинку"
+          id="inputImgUrl"
+          name="url"
+         />
+        <button type="submit" class="popup__submit">Создать</button>
+      </form>
       </div>
     </section>
     <script src="./scripts/index.js"></script>
