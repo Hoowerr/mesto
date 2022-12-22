@@ -49,12 +49,12 @@ function closePopup(popup) {
 }
 
 function openPopupAdd() {
+  popupAddInputName.value = "";
+  popupAddInputUrl.value = "";
   openPopup(popupAdd);
 }
 
 function closePopupAdd() {
-  popupAddInputName.value = "";
-  popupAddInputUrl.value = "";
   closePopup(popupAdd);
 }
 
