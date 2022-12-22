@@ -8,6 +8,7 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  flex: 1;
 }
 @media screen and (max-width: 767px) {
   .element__title {

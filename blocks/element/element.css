@@ -1,10 +1,10 @@
 .element {
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
   width: 282px;
   background-color: white;
   padding: 0;
   border-radius: 10px;
+  position: relative;
 }
 @media screen and (max-width: 1279px) {
   .element {
