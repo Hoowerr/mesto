@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   cursor: pointer;
+  display: block;
 }
 
 @media screen and (max-width: 767px) {
