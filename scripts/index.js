@@ -95,6 +95,7 @@ function deleteCard(event) {
 const popupGallery = document.querySelector(".popup_gallery");
 const elementsGallery = document.getElementById("idElements");
 const cardContainer = document.querySelector(".elements");
+const popupImgDescr = document.querySelector(".popup__image-description");
 
 const createGalery = (elementGallery) => {
   const card = elementsGallery.content
@@ -129,6 +130,7 @@ function openPopupGallery(event) {
   const { alt, src } = event.target;
   popupGalleryPhoto.src = src;
   popupGalleryPhoto.alt = alt;
+  popupImgDescr.innerText = alt;
   popupGalleryOpen.classList.add("popup_opened");
 }
 function closePopupGallery() {
