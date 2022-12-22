@@ -8,21 +8,21 @@ const popupJobInput = document.getElementById("JobInputId");
 const popupForm = document.querySelector(".popup__form");
 const likeButtons = document.querySelectorAll(".element__like-button");
 
-function openPopup() {
-  popupEdit.classList.add("popup_opened");
+function openPopupEdit() {
   popupNameInput.value = profileTitle.textContent;
   popupJobInput.value = profileSubtitle.textContent;
+  openPopup(popupEdit);
 }
 
-function closePopup() {
-  popupEdit.classList.remove("popup_opened");
+function closePopupEdit() {
+  closePopup(popupEdit);
 }
 
 function save(event) {
   event.preventDefault();
   profileTitle.textContent = popupNameInput.value;
   profileSubtitle.textContent = popupJobInput.value;
-  closePopup();
+  closePopupEdit();
 }
 
 function like(event) {
@@ -30,8 +30,8 @@ function like(event) {
 }
 
 popupForm.addEventListener("submit", save);
-popupOpenButton.addEventListener("click", openPopup);
-popupCloseButton.addEventListener("click", closePopup);
+popupOpenButton.addEventListener("click", openPopupEdit);
+popupCloseButton.addEventListener("click", closePopupEdit);
 
 const popupAdd = document.querySelector(".popup_add");
 const popupAddButton = document.querySelector(".profile__add-button");
@@ -39,12 +39,23 @@ const popupAddCloseButton = document.querySelector(".popup__add-closed");
 const popupAddInputName = document.querySelector(".popup__add-name");
 const popupAddInputUrl = document.querySelector(".popup__add-url");
 const popupSubmitBtn = document.querySelector(".popup__submit-add");
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
 function openPopupAdd() {
-  popupAdd.classList.add("popup_opened");
+  openPopup(popupAdd);
 }
 
 function closePopupAdd() {
-  popupAdd.classList.remove("popup_opened");
+  popupAddInputName.value = "";
+  popupAddInputUrl.value = "";
+  closePopup(popupAdd);
 }
 
 function saveAddCard(event) {
@@ -109,8 +120,6 @@ const createGalery = (elementGallery) => {
   card
     .querySelector(".element__image")
     .addEventListener("click", openPopupGallery);
-  popupAddInputName.value = "";
-  popupAddInputUrl.value = "";
   return card;
 };
 
@@ -131,10 +140,10 @@ function openPopupGallery(event) {
   popupGalleryPhoto.src = src;
   popupGalleryPhoto.alt = alt;
   popupImgDescr.innerText = alt;
-  popupGalleryOpen.classList.add("popup_opened");
+  openPopup(popupGalleryOpen);
 }
 function closePopupGallery() {
-  popupGalleryOpen.classList.remove("popup_opened");
+  closePopup(popupGalleryOpen);
 }
 
 popupGalleryCloseBt.addEventListener("click", closePopupGallery);
