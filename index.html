@@ -33,59 +33,77 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup popup_prof">
+    <div class="popup popup_prof">
       <div class="popup__container">
         <button type="button" class="popup__closed"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form" name="profileForm">
+        <form class="popup__form" name="profileForm" novalidate>
           <fieldset class="popup__form-edit">
             <input
-              class="popup__form-input"
+              class="popup__form-input popup__input"
               type="text"
               placeholder="Имя"
               id="NameInputId"
               name="NameInput"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="popup__form_input-error NameInputId-error"></span>
             <input
-              class="popup__form-input"
+              class="popup__form-input popup__input"
               type="text"
               placeholder="Деятельность"
               id="JobInputId"
               name="JobInput"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="popup__form_input-error JobInputId-error"></span>
           </fieldset>
-          <button class="popup__submit" type="submit">Сохранить</button>
+          <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
 
-    <section class="popup popup_add">
+    <div class="popup popup_add">
       <div class="popup__container">
         <button type="button" class="popup__add-closed"></button>
         <h2 class="popup__add-header">Новое место</h2>
-        <form class="popup__add-form" name="profileAddForm">
+        <form
+          class="popup__add-form popup__form"
+          name="profileAddForm"
+          novalidate
+        >
           <input
-            class="popup__form-input popup__add-name"
+            class="popup__form-input popup__add-name popup__input"
             type="text"
             placeholder="Название"
             id="AddNameInputId"
             name="popapAddInput"
+            minlength="2"
+            maxlength="30"
+            required
           />
+          <span class="popup__form_input-error AddNameInputId-error"></span>
           <input
-            class="popup__form-input popup__add-url"
+            class="popup__form-input popup__add-url popup__input"
             type="url"
             placeholder="Ссылка на картинку"
             id="inputImgUrl"
             name="url"
+            required
           />
-          <button class="popup__submit popup__submit-add" type="submit">
+          <span class="popup__form_input-error inputImgUrl-error"></span>
+          <button class="popup__button popup__submit-add" type="submit">
             Создать
           </button>
         </form>
       </div>
-    </section>
+    </div>
 
-    <section class="popup popup_gallery">
+    <div class="popup popup_gallery">
       <div class="popup__gallery-container">
         <img class="popup__gallery-photo" src="#" alt="#" />
         <div class="popup__image-description"></div>
@@ -94,7 +112,7 @@
           type="button"
         ></button>
       </div>
-    </section>
+    </div>
 
     <template id="idElements">
       <div class="element">
@@ -106,7 +124,8 @@
         </div>
       </div>
     </template>
-
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
