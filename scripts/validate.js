@@ -1,7 +1,6 @@
-const toggleButtonState = (inputList, buttonElement, config) => {
-  const isFormInvalid = inputList.some(
-    (inputElement) => !inputElement.validity.valid
-  );
+const toggleButtonState = (formElement, config) => {
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  const isFormInvalid = [...formElement.querySelectorAll(config.inputSelector)].some((inputElement) => !inputElement.validity.valid);
 
   if (isFormInvalid) {
     buttonElement.classList.add(config.inactiveButtonClass);
@@ -12,36 +11,38 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   buttonElement.disabled = isFormInvalid;
 };
 
+const showInputError = (inputElement, config) => {
+  const errorElement = inputElement.parentNode.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(config.inputErrorClass);
+  errorElement.classList.add(config.errorClass);
+  errorElement.textContent = inputElement.validationMessage;
+};
+
+const hideInputError = (inputElement, config) => {
+  const errorElement = inputElement.parentNode.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
+  errorElement.textContent = "";
+};
+
+const validateInput = (inputElement, config) => {
+  const isInputValid = inputElement.validity.valid;
+
+  if (isInputValid) {
+    hideInputError(inputElement, config);
+  } else {
+    showInputError(inputElement, config);
+  }
+};
+
 const enableValidation = (config) => {
   document.querySelectorAll(config.formSelector).forEach((formElement) => {
-    const inputList = Array.from(
-      formElement.querySelectorAll(config.inputSelector)
-    );
-    const buttonElement = formElement.querySelector(
-      config.submitButtonSelector
-    );
+    toggleButtonState(formElement, config);
 
-    toggleButtonState(inputList, buttonElement, config);
-
-    inputList.forEach((inputElement) => {
+    formElement.querySelectorAll(config.inputSelector).forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        const errorElement = formElement.querySelector(
-          `.${inputElement.id}-error`
-        );
-        const isInputValid = inputElement.validity.valid;
-
-        if (isInputValid) {
-          inputElement.classList.remove(config.inputErrorClass);
-          errorElement.classList.remove(config.errorClass);
-        } else {
-          inputElement.classList.add(config.inputErrorClass);
-          errorElement.classList.add(config.errorClass);
-        }
-
-        errorElement.textContent = isInputValid
-          ? ""
-          : inputElement.validationMessage;
-        toggleButtonState(inputList, buttonElement, config);
+        validateInput(inputElement, config);
+        toggleButtonState(formElement, config);
       });
     });
   });

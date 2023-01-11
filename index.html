@@ -39,32 +39,30 @@
     <div class="popup popup_prof">
       <div class="popup__container">
         <button type="button" class="popup__closed"></button>
-        <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form" name="profileForm" novalidate>
-          <fieldset class="popup__form-edit">
-            <input
-              class="popup__form-input popup__input"
-              type="text"
-              placeholder="Имя"
-              id="NameInputId"
-              name="NameInput"
-              minlength="2"
-              maxlength="40"
-              required
-            />
-            <span class="popup__input-error NameInputId-error"></span>
-            <input
-              class="popup__form-input popup__input"
-              type="text"
-              placeholder="Деятельность"
-              id="JobInputId"
-              name="JobInput"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-            <span class="popup__input-error JobInputId-error"></span>
-          </fieldset>
+          <h2 class="popup__header">Редактировать профиль</h2>
+          <input
+            class="popup__form-input popup__input"
+            type="text"
+            placeholder="Имя"
+            id="NameInputId"
+            name="NameInput"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="popup__input-error NameInputId-error"></span>
+          <input
+            class="popup__form-input popup__input"
+            type="text"
+            placeholder="Деятельность"
+            id="JobInputId"
+            name="JobInput"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="popup__input-error JobInputId-error"></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -72,7 +70,7 @@
 
     <div class="popup popup_add">
       <div class="popup__container">
-        <button type="button" class="popup__add-closed"></button>
+        <button type="button" class="popup__closed"></button>
         <h2 class="popup__add-header">Новое место</h2>
         <form
           class="popup__add-form popup__form"
