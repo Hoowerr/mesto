@@ -1,11 +1,6 @@
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_visible",
-};
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { initialCards, validationConfig } from "./constans.js";
 
 const popupEdit = document.querySelector(".popup_prof");
 const popupEditButton = document.querySelector(".profile__edit-button");
@@ -21,21 +16,19 @@ const popupAddInputName = document.querySelector(".popup__add-name");
 const popupAddInputUrl = document.querySelector(".popup__add-url");
 const popupSubmitBtn = document.querySelector(".popup__submit-add");
 const popupGalleryOpen = document.querySelector(".popup_gallery");
-const popupGalleryContainer = document.querySelector(
-  ".popup__gallery-container"
-);
 const popupGalleryPhoto = document.querySelector(".popup__gallery-photo");
-const popupGallery = document.querySelector(".popup_gallery");
 const elementsGallery = document.getElementById("idElements");
 const cardContainer = document.querySelector(".elements");
 const popupImgDescr = document.querySelector(".popup__image-description");
 
+const validator = new FormValidator(validationConfig);
+validator.enableValidation();
+
 function openPopupEdit() {
   popupNameInput.value = profileTitle.textContent;
   popupJobInput.value = profileSubtitle.textContent;
-  disableButton(
-    popupEdit.querySelector(validationConfig.submitButtonSelector),
-    validationConfig
+  validator.disableButton(
+    popupEdit.querySelector(validationConfig.submitButtonSelector)
   );
   openPopup(popupEdit);
 }
@@ -70,15 +63,10 @@ function closeActivePopupEsc(event) {
 function openPopupAdd() {
   popupAddInputName.value = "";
   popupAddInputUrl.value = "";
-  disableButton(
-    popupAdd.querySelector(validationConfig.submitButtonSelector),
-    validationConfig
+  validator.disableButton(
+    popupAdd.querySelector(validationConfig.submitButtonSelector)
   );
   openPopup(popupAdd);
-}
-
-function like(event) {
-  event.target.classList.toggle("element__like-button_active");
 }
 
 function saveAddCard(event) {
@@ -92,25 +80,8 @@ function saveAddCard(event) {
   closePopup(popupAdd);
 }
 
-function deleteCard(event) {
-  event.target.closest(".element").remove();
-}
-
-const createGalery = (elementGallery) => {
-  const card = elementsGallery.content
-    .querySelector(".element")
-    .cloneNode(true);
-  const imageElement = card.querySelector(".element__image");
-
-  imageElement.src = elementGallery.link;
-  imageElement.alt = elementGallery.name;
-  card.querySelector(".element__title").textContent = elementGallery.name;
-  card.querySelector(".element__like-button").addEventListener("click", like);
-  card.querySelector(".element__delete").addEventListener("click", deleteCard);
-  imageElement.addEventListener("click", () =>
-    openPopupGallery(elementGallery)
-  );
-  return card;
+const createGalery = (dataCard) => {
+  return new Card(dataCard, elementsGallery, openPopupGallery).generateCard();
 };
 
 function openPopupGallery({ link, name }) {
@@ -140,5 +111,3 @@ initialCards.forEach((object) => {
   const newCard = createGalery(object);
   cardContainer.prepend(newCard);
 });
-
-enableValidation(validationConfig);
