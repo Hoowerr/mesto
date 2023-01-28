@@ -33,7 +33,7 @@ const popupEditFormValidator = new FormValidator(
 function openPopupEdit() {
   popupNameInput.value = profileTitle.textContent;
   popupJobInput.value = profileSubtitle.textContent;
-  popupEditFormValidator.disableButton();
+  popupEditFormValidator.resetValidation();
   openPopup(popupEdit);
 }
 
@@ -67,7 +67,7 @@ function closeActivePopupEsc(event) {
 function openPopupAdd() {
   popupAddInputName.value = "";
   popupAddInputUrl.value = "";
-  popupAddFormValidator.disableButton();
+  popupAddFormValidator.resetValidation();
   openPopup(popupAdd);
 }
 
