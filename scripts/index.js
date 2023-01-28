@@ -9,27 +9,31 @@ const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const popupNameInput = document.getElementById("NameInputId");
 const popupJobInput = document.getElementById("JobInputId");
-const popupForm = document.querySelector(".popup__form");
+const popupEditForm = document.querySelector(".popup__form-edit");
 const popupAdd = document.querySelector(".popup_add");
+const popupAddForm = document.querySelector(".popup__add-form");
 const popupAddButton = document.querySelector(".profile__add-button");
 const popupAddInputName = document.querySelector(".popup__add-name");
 const popupAddInputUrl = document.querySelector(".popup__add-url");
-const popupSubmitBtn = document.querySelector(".popup__submit-add");
 const popupGalleryOpen = document.querySelector(".popup_gallery");
 const popupGalleryPhoto = document.querySelector(".popup__gallery-photo");
-const elementsGallery = document.getElementById("idElements");
 const cardContainer = document.querySelector(".elements");
 const popupImgDescr = document.querySelector(".popup__image-description");
 
-const validator = new FormValidator(validationConfig);
-validator.enableValidation();
+const popupAddFormValidator = new FormValidator(
+  validationConfig,
+  popupAddForm
+).enableValidation();
+
+const popupEditFormValidator = new FormValidator(
+  validationConfig,
+  popupEditForm
+).enableValidation();
 
 function openPopupEdit() {
   popupNameInput.value = profileTitle.textContent;
   popupJobInput.value = profileSubtitle.textContent;
-  validator.disableButton(
-    popupEdit.querySelector(validationConfig.submitButtonSelector)
-  );
+  popupEditFormValidator.disableButton();
   openPopup(popupEdit);
 }
 
@@ -37,7 +41,7 @@ function saveInputInfo(event) {
   event.preventDefault();
   profileTitle.textContent = popupNameInput.value;
   profileSubtitle.textContent = popupJobInput.value;
-  closeActivePopup();
+  closePopup(popupEdit);
 }
 
 function openPopup(popup) {
@@ -63,9 +67,7 @@ function closeActivePopupEsc(event) {
 function openPopupAdd() {
   popupAddInputName.value = "";
   popupAddInputUrl.value = "";
-  validator.disableButton(
-    popupAdd.querySelector(validationConfig.submitButtonSelector)
-  );
+  popupAddFormValidator.disableButton();
   openPopup(popupAdd);
 }
 
@@ -81,7 +83,7 @@ function saveAddCard(event) {
 }
 
 const createGalery = (dataCard) => {
-  return new Card(dataCard, elementsGallery, openPopupGallery).generateCard();
+  return new Card(dataCard, "#idElements", openPopupGallery).generateCard();
 };
 
 function openPopupGallery({ link, name }) {
@@ -98,13 +100,13 @@ document.querySelectorAll(".popup").forEach((el) => {
     }
   });
 });
-popupForm.addEventListener("submit", saveInputInfo);
+popupEditForm.addEventListener("submit", saveInputInfo);
 popupEditButton.addEventListener("click", openPopupEdit);
 popupCloseButtons.forEach((btn) => {
   const popup = btn.closest(".popup");
   btn.addEventListener("click", () => closePopup(popup));
 });
-popupSubmitBtn.addEventListener("click", saveAddCard);
+popupAddForm.addEventListener("submit", saveAddCard);
 popupAddButton.addEventListener("click", openPopupAdd);
 
 initialCards.forEach((object) => {
