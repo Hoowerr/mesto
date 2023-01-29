@@ -20,15 +20,8 @@ const popupGalleryPhoto = document.querySelector(".popup__gallery-photo");
 const cardContainer = document.querySelector(".elements");
 const popupImgDescr = document.querySelector(".popup__image-description");
 
-const popupAddFormValidator = new FormValidator(
-  validationConfig,
-  popupAddForm
-).enableValidation();
-
-const popupEditFormValidator = new FormValidator(
-  validationConfig,
-  popupEditForm
-).enableValidation();
+const popupAddFormValidator = new FormValidator(validationConfig, popupAddForm);
+const popupEditFormValidator = new FormValidator(validationConfig, popupEditForm);
 
 function openPopupEdit() {
   popupNameInput.value = profileTitle.textContent;
@@ -113,3 +106,5 @@ initialCards.forEach((object) => {
   const newCard = createGalery(object);
   cardContainer.prepend(newCard);
 });
+popupAddFormValidator.enableValidation();
+popupEditFormValidator.enableValidation();

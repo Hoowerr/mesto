@@ -45,15 +45,14 @@ export class FormValidator {
     );
 
     if (isFormInvalid) {
-      this.disableButton(this._buttonElement);
+      this.disableButton();
     } else {
-      this.enableButton(this._buttonElement);
+      this.enableButton();
     }
   };
 
   _validateInput = (inputElement) => {
     const isInputValid = inputElement.validity.valid;
-
     if (isInputValid) {
       this._hideInputError(inputElement);
     } else {
@@ -62,20 +61,16 @@ export class FormValidator {
   };
 
   enableValidation = () => {
-    this._toggleButtonState(this._buttonElement, this._inputList);
-
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._validateInput(inputElement);
         this._toggleButtonState();
       });
     });
-    return this;
   };
 
   resetValidation() {
     this._toggleButtonState();
-
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
