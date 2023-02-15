@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(dataCard, templateContainer, openPopupGallery) {
     this._name = dataCard.name;
     this._link = dataCard.link;
