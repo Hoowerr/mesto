@@ -1,10 +1,3 @@
-export const popupEditButton = document.querySelector(".profile__edit-button");
-export const profileTitle = document.querySelector(".profile__title");
-export const profileSubtitle = document.querySelector(".profile__subtitle");
-export const popupEditForm = document.querySelector(".popup__form-edit");
-export const popupAddForm = document.querySelector(".popup__add-form");
-export const popupAddButton = document.querySelector(".profile__add-button");
-
 export const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",

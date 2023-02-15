@@ -1,19 +1,20 @@
 import "./index.css";
+
 import { initialCards, validationConfig } from "../utils/constants.js";
-import {
-  popupEditButton,
-  profileTitle,
-  profileSubtitle,
-  popupEditForm,
-  popupAddForm,
-  popupAddButton,
-} from "../utils/constants.js";
+
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+
+const popupEditButton = document.querySelector(".profile__edit-button");
+const popupEditForm = document.querySelector(".popup__form-edit");
+const popupAddForm = document.querySelector(".popup__add-form");
+const popupAddButton = document.querySelector(".profile__add-button");
+const popupProfileName = document.querySelector(".popup__input_edit_name");
+const popupProfileJob = document.querySelector(".popup__input_edit_job");
 
 const popupAddFormValidator = new FormValidator(validationConfig, popupAddForm);
 const popupEditFormValidator = new FormValidator(
@@ -61,17 +62,21 @@ const popupAdd = new PopupWithForm(".popup_add", {
 });
 popupAdd.setEventListeners();
 
-popupEditButton.addEventListener("click", () => {
-  popupEdit.open();
+const handleEditButtonClick = () => {
+  popupEditFormValidator.resetValidation();
   const profileInfo = saveInputInfo.getUserInfo();
-  profileTitle.value = profileInfo.name;
-  profileSubtitle.value = profileInfo.description;
-});
+  popupProfileName.value = profileInfo.name;
+  popupProfileJob.value = profileInfo.description;
+  popupEdit.open();
+};
 
-popupAddButton.addEventListener("click", () => {
+const handleAddButtonClick = () => {
   popupAdd.open();
   popupAddFormValidator.resetValidation();
-});
+};
+
+popupEditButton.addEventListener("click", handleEditButtonClick);
+popupAddButton.addEventListener("click", handleAddButtonClick);
 
 function createGalery(dataCard) {
   return new Card(dataCard, "#idElements", openPopupGallery).generateCard();
