@@ -4,6 +4,11 @@ export default class PopupDeleteCard extends Popup {
   constructor({ popupSelector }) {
     super(popupSelector);
     this._form = this._popup.querySelector(".popup__form");
+    this._buttonSave = this._popup.querySelector(".popup__button");
+  }
+
+  setButtonText(text) {
+    this._buttonSave.textContent = text;
   }
 
   handleFormSubmit(submit) {
