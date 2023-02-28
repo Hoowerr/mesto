@@ -98,8 +98,8 @@ const popupEditAvatar = new PopupWithForm({
   },
 });
 
-const createGalery = (dataCard) =>
-  new Card({
+const createGalery = (dataCard) => {
+  const card = new Card({
     dataCard,
     templateContainer: "#idElements",
     userId,
@@ -108,7 +108,7 @@ const createGalery = (dataCard) =>
       api
         .addLike(cardId)
         .then((dataCard) => {
-          this.likeCardButton(dataCard);
+          card.likeCardButton(dataCard);
         })
         .catch((err) => {
           console.error(err);
@@ -118,7 +118,7 @@ const createGalery = (dataCard) =>
       api
         .removeLike(cardId)
         .then((dataCard) => {
-          this.likeCardButton(dataCard);
+          card.likeCardButton(dataCard);
         })
         .catch((err) => {
           console.error(err);
@@ -131,7 +131,7 @@ const createGalery = (dataCard) =>
         api
           .removeCard(cardId)
           .then(() => {
-            this.deleteCardButton();
+            card.deleteCardButton();
             popupDelCard.close();
           })
           .catch((err) => {
@@ -142,7 +142,9 @@ const createGalery = (dataCard) =>
           });
       });
     },
-  }).generateCard();
+  });
+  return card.generateCard();
+};
 
 const popupAddFormValidator = new FormValidator(validationConfig, popupAddForm);
 const popupEditFormValidator = new FormValidator(
