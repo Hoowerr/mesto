@@ -1,13 +1,8 @@
 .element__container {
-  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-right: 20px;
-  margin-left: 19px;
-  gap: 20px;
-  margin-top: 20px;
-  margin-bottom: 26px;
+  justify-content: center;
 }
 @media screen and (max-width: 767px) {
   .element__container {

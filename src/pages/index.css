@@ -49,3 +49,6 @@
 @import url(../blocks/popup/__input/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__input/__input_type_error/popup__input_type_error.css);
 @import url(../blocks/popup/__input/__input-error_visible/popup__input-error_visible.css);
+@import url(../blocks/profile/__avatar-button/profile__avatar-button.css);
+@import url(../blocks/element/__like-count/element__like-count.css);
+@import url(../blocks/element/__info/element__info.css);

@@ -1,10 +1,25 @@
 export default class Card {
-  constructor(dataCard, templateContainer, openPopupGallery) {
+  constructor({
+    dataCard,
+    templateContainer,
+    userId,
+    openPopupGallery,
+    handleSetCardLike,
+    handleDelCardLike,
+    handleDeleteCard,
+  }) {
     this._name = dataCard.name;
     this._link = dataCard.link;
+    this._likes = dataCard.likes;
+    this._cardId = dataCard._id;
     this._dataCard = dataCard;
+    this._userId = userId;
+    this._ownerId = dataCard.owner._id;
     this._templateContainer = templateContainer;
     this._openPopupGallery = openPopupGallery;
+    this._handleSetCardLike = handleSetCardLike;
+    this._handleDelCardLike = handleDelCardLike;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   _getTemplate() {
@@ -20,20 +35,43 @@ export default class Card {
     this._titleElement.textContent = this._name;
   }
 
-  _deleteCardButton() {
+  deleteCardButton() {
     this._element.remove();
-    this._element = null;
   }
 
-  _likeCardButton() {
+  likeCardButton(dataCard) {
+    this._likes = dataCard.likes;
+    this._likesCounter.textContent = this._likes.length;
     this._likeButton.classList.toggle("element__like-button_active");
   }
 
+  _likeStatus() {
+    if (
+      this._likes.some((user) => {
+        return this._userId === user._id;
+      })
+    ) {
+      this._likeButton.classList.add("element__like-button_active");
+    }
+  }
+
+  _setDeleteButton() {
+    if (this._userId !== this._ownerId) {
+      this._deleteButton.remove();
+    }
+  }
+
   _addEventListeners() {
-    this._likeButton.addEventListener("click", () => this._likeCardButton());
+    this._likeButton.addEventListener("click", () => {
+      if (this._likeButton.classList.contains("element__like-button_active")) {
+        this._handleDelCardLike(this._cardId);
+      } else {
+        this._handleSetCardLike(this._cardId);
+      }
+    });
 
     this._deleteButton.addEventListener("click", () =>
-      this._deleteCardButton()
+      this._handleDeleteCard(this._cardId)
     );
     this._imageElement.addEventListener("click", () => {
       this._openPopupGallery(this._dataCard);
@@ -46,6 +84,10 @@ export default class Card {
     this._titleElement = this._element.querySelector(".element__title");
     this._likeButton = this._element.querySelector(".element__like-button");
     this._deleteButton = this._element.querySelector(".element__delete");
+    this._likesCounter = this._element.querySelector(".element__like-count");
+    this._likesCounter.textContent = this._likes.length;
+    this._likeStatus();
+    this._setDeleteButton();
     this._setData();
     this._addEventListeners();
     return this._element;
