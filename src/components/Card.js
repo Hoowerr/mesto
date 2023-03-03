@@ -63,11 +63,9 @@ export default class Card {
 
   _addEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      if (this._likeButton.classList.contains("element__like-button_active")) {
-        this._handleDelCardLike(this._cardId);
-      } else {
-        this._handleSetCardLike(this._cardId);
-      }
+      this._likeButton.classList.contains("element__like-button_active")
+        ? this._handleDelCardLike(this._cardId)
+        : this._handleSetCardLike(this._cardId);
     });
 
     this._deleteButton.addEventListener("click", () =>

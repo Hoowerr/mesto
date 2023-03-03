@@ -44,20 +44,14 @@ export default class FormValidator {
       (inputElement) => !inputElement.validity.valid
     );
 
-    if (isFormInvalid) {
-      this.disableButton();
-    } else {
-      this.enableButton();
-    }
+    isFormInvalid ? this.disableButton() : this.enableButton();
   };
 
   _validateInput = (inputElement) => {
     const isInputValid = inputElement.validity.valid;
-    if (isInputValid) {
-      this._hideInputError(inputElement);
-    } else {
-      this._showInputError(inputElement);
-    }
+    isInputValid
+      ? this._hideInputError(inputElement)
+      : this._showInputError(inputElement);
   };
 
   enableValidation = () => {
